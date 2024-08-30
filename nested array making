@@ -1,0 +1,130 @@
+const a=[
+  {
+    category:"A",
+    sub:"Sanskrit",
+    examname:"unit 1",
+    marks:1
+  },
+  {
+    category:"A",
+    sub:"Sanskrit",
+    examname:"unit 2",
+    marks:2
+  },
+  {
+    category:"A",
+    sub:"Telugu",
+    examname:"unit 1",
+    marks:10
+  },
+  {
+    category:"A",
+    sub:"Telugu",
+    examname:"unit 2",
+    marks:20
+  },
+  // {
+  //   category:"B",
+  //   sub:"Biology",
+  //   examname:"unit 1",
+  //   marks:11
+  // },
+  // {
+  //   category:"B",
+  //   sub:"Biology",
+  //   examname:"unit 2",
+  //   marks:21
+  // },
+  {
+    category:"B",
+    sub:"Zoology",
+    examname:"unit 1",
+    marks:20
+  },
+  {
+    category:"B",
+    sub:"Zoology",
+    examname:"unit 2",
+    marks:56
+  },
+  
+    {
+    category:"C",
+    sub:"Physics",
+    examname:"unit 1",
+    marks:11
+  },
+  {
+    category:"C",
+    sub:"Physics",
+    examname:"unit 2",
+    marks:21
+  },
+  {
+    category:"C",
+    sub:"Chemistry",
+    examname:"unit 1",
+    marks:20
+  },
+  {
+    category:"C",
+    sub:"Chemistry",
+    examname:"unit 2",
+    marks:56
+  },
+  {
+    category:"C",
+    sub:"Maths",
+    examname:"unit 1",
+    marks:20
+  },
+  {
+    category:"C",
+    sub:"Maths",
+    examname:"unit 2",
+    marks:56
+  },
+]
+
+// console.log({a})
+
+
+function transform(x,i){
+  const tableData=[]
+  x.forEach((y)=>{
+    let catExistance=tableData.find((a)=>a.catName===y.category)
+    if(!catExistance){
+      let category={
+        catHeader:"Category",
+        catName:y.category,
+        subList:[]
+      }
+      tableData.push(category)
+    }
+    // console.log({catExistance})
+     tableData.forEach((a,i)=>{
+     let actExistance=tableData[i].subList.find((a)=>a.activityName===y.sub)
+     if(a.catName===y.category&&!actExistance){
+      // console.log({cat:a.catName})
+      let activity={
+        actvityHeader:"Activities",
+        activityName:y.sub,
+        examList:[]
+      }
+      tableData[i].subList.push(activity)
+    }
+    // console.log({tableData})
+    tableData[i].subList.forEach((b,k)=>{
+    let examExistance=b.examList.find((b)=>b.examName===y.examName)
+      if(b.activityName===y.sub){
+     
+        tableData[i].subList[k].examList.push(y)
+      }
+    })
+  })
+  })
+ 
+   console.log({a:tableData,b:tableData[0],c:tableData[0].subList,d:tableData[0].subList[0].examList})
+}
+
+transform(a)
